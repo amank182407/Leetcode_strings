@@ -13,7 +13,7 @@ public:
             {  
                board[row][col]='Q';
                leftrow[row]=1;
-               upperdiagonal[n-1+col-row]=1;
+               upperdiagonal[n-1+ col-row]=1;
                lowerdiagonal[row+col]=1;
                solve(col+1,ans,board,leftrow,upperdiagonal,lowerdiagonal,n);
                board[row][col]='.';
