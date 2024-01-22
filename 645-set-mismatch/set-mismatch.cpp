@@ -2,56 +2,18 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        int n = nums.size();
-        int xorAll = 0;
-        int xorArray = 0;
-
-     
-        for (int i = 1; i <= n; i++) {
-            xorAll ^= i;
+        int n =nums.size();
+        vector<int>v(n+1,0);
+        int missing=0,duplicate =0;
+        for(int i =0;i<n;i++){
+            v[nums[i]]++;
         }
-
-        
-        for (int num : nums) {
-            xorArray ^= num;
+        for(int i =1;i<v.size();i++){
+            if(v[i]==2)duplicate = i;
+            if(v[i]==0)missing = i;
         }
-
-       
-        int xorResult = xorArray ^ xorAll;
-
-        
-        int rightmostSetBit = xorResult & -xorResult;
-
-        int xorSet = 0;
-        int xorNotSet = 0;
-
-        
-        for (int i = 1; i <= n; i++) {
-            if (i & rightmostSetBit) {
-                xorSet ^= i;
-            } else {
-                xorNotSet ^= i;
-            }
-        }
-
-        for (int num : nums) {
-            if (num & rightmostSetBit) {
-                xorSet ^= num;
-            } else {
-                xorNotSet ^= num;
-            }
-        }
-
-        
-        for (int num : nums) {
-            if (num == xorSet) {
-                return {xorSet, xorNotSet};
-            }
-        }
-
-        
-        return {xorNotSet, xorSet};
+        return {duplicate,missing};
     }
-};
+}; 
 
 
