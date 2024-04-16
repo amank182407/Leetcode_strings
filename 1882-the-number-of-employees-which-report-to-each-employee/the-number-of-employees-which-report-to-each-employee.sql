@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select e.employee_id,e.name,count(p.reports_to) as reports_count,round(Avg(p.age),0) as average_age from employees as e left join employees as p on e.employee_id=p.reports_to group by e.employee_id having count(p.reports_to)>=1 order by e.employee_id;
